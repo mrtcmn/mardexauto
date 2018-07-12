@@ -1,0 +1,97 @@
+<mat-toolbar class="mainToolbar">
+  <p class="mat-toolbar mat-toolbar-single-row mainToolbar">
+    <span><i class="material-icons">
+arrow_back
+</i></span>
+    <span class="example-spacer">dd</span>
+  </p>
+</mat-toolbar>
+<div class="container dialogT">
+  <div class="example-container">
+
+
+    <form class="example-form" [formGroup]="dataForm">1
+      <mat-form-field class="full-size">
+        <input matInput placeholder="Name" value="Sushi" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <input matInput placeholder="Website" value="" formControlName="website">
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <input matInput placeholder="Phone" value="" formControlName="phone">
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <input matInput placeholder="Country" value="" formControlName="country">
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <input matInput placeholder="City" value="" formControlName="city">
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <textarea matInput placeholder="Adress Details" formControlName="adressDetails"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-size">
+        <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Select" aria-label="Number" matInput [formControl]="countries" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of countryOptions" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="full-size">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)">
+            {{fruit.name}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Tags" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" formControlName="relatedTags" />
+        </mat-chip-list>
+      </mat-form-field>
+
+<mat-divider></mat-divider>
+
+<div class="contacts" formArrayName="contacts">
+<div class="contactItem" *ngFor="let contactItem of contacts.controls; let i=index" [formGroupName]="i">
+<h3>{{i+1}}. Contact</h3>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Name" value="" formControlName="name">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Title" value="" formControlName="title">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Formal Name" value="" formControlName="formalName">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Name Prefix" value="" formControlName="namePrefix">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Direct Mail" value="" formControlName="directMail">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <input matInput placeholder="Direct Phone" value="" formControlName="directPhone">
+  </mat-form-field>
+  <mat-form-field class="full-size">
+    <mat-checkbox formControlName="defaultContact">Default Contact</mat-checkbox>
+    <input matInput >
+  </mat-form-field>
+</div>
+ <button mat-raised-button (click)="addItem()">Add Contact</button>
+</div>
+
+
+    </form>
+
+  </div>
+ <button mat-raised-button (click)="onOKClick()">Submit</button>
+
+
+</div>
